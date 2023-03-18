@@ -10,6 +10,9 @@ The order of the leds is always the same.
 
 ## Clip about the implementation
 
+[(explicare)][explicare]
+
+
 [(Watch the clip)][clip]
 
 ## Schematics
@@ -58,4 +61,5 @@ To run the `app` module on an Arduino Ide version 2.0.4. downloaded from [here](
 
 
 [clip]: https://user-images.githubusercontent.com/100190688/226097208-2a4882ad-6d0c-4454-b16f-481133b7c51b.mp4
+[explicare]: https://user-images.githubusercontent.com/100190688/226101046-810d05dc-e961-4e60-aee7-7bc5fe00dba9.mp4
 [demo-gif]: demo1.gif
