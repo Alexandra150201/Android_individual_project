@@ -14,94 +14,44 @@ The first led would light up and stay on, but the others 2 will blink with diffe
 ## Schematics
 
 ![Schematics](picture.png)
+![Schematics](pic1.jpg)
 
 ## Pre-requisites
 
-1.    Arduino Uno.     
-2.   1 x 1k ohms Resistor.
+1.   Arduino Uno.
+2.   3 x 1000 ohms Resistor. 
 3.   1 x 10k ohms Resistor.
-4.   1 x LEDs (5mm).
+4.   3 x LEDs (5mm).
 5.   Push button.
 6.   Breadboard.
-7.   Jumper wire.  
+7.   Jumper wire.   
      
 ## Setup and Build
 
 To setup, follow these steps below.
 
-1.  Add a valid Google Cloud Vision API key in the constant `CloudVisionUtils.CLOUD_VISION_API_KEY`
-  - Create a Google Cloud Platform (GCP) project on [GCP Console](https://console.cloud.google.com/)
-  - Enable Cloud Vision API under Library
-  - Add an API key under Credentials
-  - Copy and paste the Cloud Vision API key to the constant in `CloudVisionUtils.java`
+1. A push button having 4 pins and we use 3 pins of the push button for controlling LED.
 
-2.  Add a valid `google-services.json` from Firebase to `app/` and
-    `companionApp/`
-  - Create a Firebase project on [Firebase Console](https://console.firebase.google.com)
-  - Add an Android app with your specific package name in the project
-  - Download the auto-generated `google-services.json` and save to `app/` and `companionApp/` folders
+2. Connecting Button pin 4 to Arduino pin 5v using a jumper wire.
 
-3.  Ensure the security rules for your Firebase project allow public read/write
-    access. **Note:** The rules in this section are set to public read/write for
-    demonstration purposes only.
-  - Firebase -> Database -> Rules:
+3. Attach a 10k ohms resistor to button pin 2 and at the end of the resistor is connected to Arduino pin GND.
 
-          {
-            "rules": {
-              ".read": true,
-              ".write": true
-            }
-          }
+4. Button pin 1 is connected to Arduino digital pin 4 using a jumper wire.
 
-  - Firebase -> Storage -> Rules:
+5. Attach a 1000 ohms resistor to the positive pin (anode) of each led and at the end of the resistor is connected to Arduino digital pins.
 
-          service firebase.storage {
-            match /b/{bucket}/o {
-              match /{allPaths=**} {
-                allow read, write;
-              }
-            }
-          }
+6. Connecting Negative pin of the LED to Arduino pin GND using a jumper wire.
 
-
-There are two modules: `app` and `companionApp`, the former is on device while the latter on
-companion device e.g. Android phone.
+7. The circuit is ready.
 
 ## Running
 
 To run the `app` module on an Android Things board:
 
-1. Connect a push button to your device's GPIO pin according to the schematics below
-2. Deploy and run the `app` module
-3. Take a picture by pushing the button
-4. Verify from Firebase Console that pictures are uploaded to a log in the Firebase database
-   of your project
-5. Verify from Firebase Console that the uploaded pictures in the log get annotations after
-   a small delay from the GCP Cloud Vision
-
-To run the `companionApp` module on your Android phone:
-
-1. Deploy and run the `companionApp` module
-2. Verify that you see a new annotated picture every time you push the button
-
-## Enable auto-launch behavior
-
-This sample app is currently configured to launch only when deployed from your
-development machine. To enable the main activity to launch automatically on boot,
-add the following `intent-filter` to the app's manifest file:
-
-```xml
-<activity ...>
-
-    <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <category android:name="android.intent.category.HOME"/>
-        <category android:name="android.intent.category.DEFAULT"/>
-    </intent-filter>
-
-</activity>
-```
+1. Connect the arduino to the computer and start arduino IDE
+2. Upload and run the code
+3. Push the button to switch the leds
 
 
-[clip]: https://www.youtube.com/watch?v=lCdlz7tk_oI&list=PLWz5rJ2EKKc-GjpNkFe9q3DhE2voJscDT&index=1
+[clip]: https://user-images.githubusercontent.com/100190688/226097208-2a4882ad-6d0c-4454-b16f-481133b7c51b.mp4
 [demo-gif]: demo1.gif
