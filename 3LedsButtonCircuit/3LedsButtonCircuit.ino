@@ -6,6 +6,11 @@ const int ledPin        = 13;      // the number of the LED pin
 const int ledPin1      = 12;
 const int ledPin2      = 11;
 
+bool led1On = false;
+bool led2On = false;
+int counterMax = 5;
+int counter = 0;
+
 // variables will change:
 int  initial    = 0;       //hold current  initial
 int oldstate    = 0;       //hold last  initial
@@ -38,20 +43,34 @@ void loop(){
        break;
      case 2:
        digitalWrite(ledPin, LOW);
-       digitalWrite(ledPin1, HIGH);
-       delay(1000);
-       digitalWrite(ledPin1, LOW); 
-       delay(1000);  
+       if (led1On == false) {
+        digitalWrite(ledPin1, HIGH);
+        led1On = true;
+       }
+       else {
+        digitalWrite(ledPin1, LOW);
+        led1On = false;
+       }
        digitalWrite(ledPin2, LOW);
        oldstate =  initial;
        break;
      case 3:
        digitalWrite(ledPin, LOW);
        digitalWrite(ledPin1, LOW);
-       digitalWrite(ledPin2, HIGH);
-       delay(2000);
-       digitalWrite(ledPin2, LOW);
-       delay(2000);
+
+        counter++;
+
+      if (counter == counterMax) {
+        counter = 0;
+        if (led2On == false) {
+        digitalWrite(ledPin2, HIGH);
+        led2On = true;
+       }
+       else {
+        digitalWrite(ledPin2, LOW);
+        led2On = false;
+       }
+      }
        oldstate =  initial;
        break;         
      default:                      //if  initial is not 1 2 3
